@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.realestate.dao.ProfileDao;
-import com.cg.realestate.model.User;
+import com.cg.realestate.model.Profile;
 
 @Service
 public class ProfileService{
@@ -15,21 +15,21 @@ public class ProfileService{
 	@Autowired
 	private ProfileDao dao;
 	
-	public User createProfile(User adduser) {
-		User user = dao.save(adduser);
+	public Profile createProfile(Profile adduser) {
+		Profile user = dao.save(adduser);
 		return user;
 	}
 	
-	public List<User> findAll(){
-		 List<User> users = new ArrayList<>();
+	public List<Profile> findAll(){
+		 List<Profile> users = new ArrayList<>();
 		 dao.findAll().forEach(users::add);
 		 return users;
 		
 	}
 	
-	public User updateProfile(User updateUser) {
+	public Profile updateProfile(Profile updateUser) {
 	
-		User user = dao.findById(updateUser.getUserId()).get();
+		Profile user = dao.findById(updateUser.getUserId()).get();
 	 
 		if( user == null) {
 	    	return null;
@@ -37,9 +37,8 @@ public class ProfileService{
 	    else {
 	    	user.setUserName(updateUser.getUserName());
 	    	user.setEmailId(updateUser.getEmailId());
-	    	user.setPassword(updateUser.getPassword());
 	    	user.setPhoneNo(updateUser.getPhoneNo());
-	    	user.setUserType(updateUser.getUserType());
+	    	
 	    	
 	    	dao.save(user);
 	    	return user;

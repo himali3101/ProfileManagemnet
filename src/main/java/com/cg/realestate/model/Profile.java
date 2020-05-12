@@ -5,35 +5,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
-public class User {
+public class Profile {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
-	@Column
+	@Column(unique=true)
+	@NotNull(message = "name should not be null")
+	@Pattern(regexp = "^[A-Za-z]*$",message = "Name must be alphabet")
 	private String userName;
-    @Column
+    @Column(unique=true)
+    @NotEmpty @Email
 	private String emailId;
-	@Column
-    private String password;
-	@Column
+	@Column(unique=true)
+	@Size( min = 10 , max = 10)
 	private String phoneNo;
-	@Column
-	private String userType;
 	
-	public User() {
+
+	
+	public Profile() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(String userName, String emailId, String password, String phoneNo, String userType) {
+	public Profile(String userName, String emailId, String phoneNo) {
 		super();
 		this.userName = userName;
 		this.emailId = emailId;
-		this.password = password;
 		this.phoneNo = phoneNo;
-		this.userType = userType;
+		
 	}
 	
 	public int getUserId() {
@@ -54,28 +60,17 @@ public class User {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public String getPhoneNo() {
 		return phoneNo;
 	}
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", EmailId=" + emailId + ", password=" + password
-				+ ", phoneNo=" + phoneNo + ", userType=" + userType + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", EmailId=" + emailId + ", phoneNo=" + phoneNo +  "]";
 	}
 	
 	

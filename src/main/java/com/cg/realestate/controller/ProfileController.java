@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.realestate.model.User;
+import com.cg.realestate.model.Profile;
 import com.cg.realestate.service.ProfileService;
 
 import io.swagger.annotations.Api;
@@ -35,9 +35,9 @@ public class ProfileController {
 	
 	@GetMapping(path = "/display")
 	@ApiOperation(value = "displayProfile", nickname = "displayProfile")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = User.class),
-							@ApiResponse(code = 500, message = "Failure", response = User.class) })
-	public List<User> display() {
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Profile.class),
+							@ApiResponse(code = 500, message = "Failure", response = Profile.class) })
+	public List<Profile> display() {
 		logger.info("display profile.");
 		logger.trace(" Inside profile display() function");
 		logger.error("Error happened at profile display()");
@@ -48,9 +48,9 @@ public class ProfileController {
 
 	@PostMapping(path = "/create")
 	@ApiOperation(value = "addProfile", nickname = "addProfile")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = User.class),
-							@ApiResponse(code = 500, message = "Failure", response = User.class) })
-	public User createProfile(@RequestBody User user) {
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Profile.class),
+							@ApiResponse(code = 500, message = "Failure", response = Profile.class) })
+	public Profile createProfile(@RequestBody Profile user) {
 		logger.info("Adding Profile.");
 		logger.trace(" Inside createProfile() function");
 		logger.error("Error happened at createProfile()");
@@ -60,13 +60,13 @@ public class ProfileController {
 	
 	@PostMapping(path = "/update")
 	@ApiOperation(value = "updateProfile", nickname = "updateProfile")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = User.class),
-							@ApiResponse(code = 500, message = "Failure", response = User.class) })
-	public User updateProfile(@RequestBody User updateUser) {
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success", response = Profile.class),
+							@ApiResponse(code = 500, message = "Failure", response = Profile.class) })
+	public Profile updateProfile(@RequestBody Profile updateUser) {
 		logger.info("updating Profile.");
 		logger.trace(" Inside updateProfile() function");
 		logger.error("Error happened at updateProfile()");
-		User user = service.updateProfile(updateUser);		
+		Profile user = service.updateProfile(updateUser);		
 		if(user == null) {
 			return null;
 		}
