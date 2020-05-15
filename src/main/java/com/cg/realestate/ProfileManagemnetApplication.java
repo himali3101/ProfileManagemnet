@@ -39,9 +39,9 @@ public class ProfileManagemnetApplication {
                  "API CREATION",
                  "1.0",
                  "Free to Use",
-                 new Contact("Himali Gunjal","/property" ,"himaligunjal31@gmail.com"),
+                 new Contact("Himali Gunjal","/profile" ,"himaligunjal31@gmail.com"),
                  "API licence",
-                 "/limits",
+                 "/create",
                  Collections.emptyList());
         return apiInfo;  }
 }

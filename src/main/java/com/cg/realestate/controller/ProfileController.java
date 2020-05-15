@@ -40,11 +40,10 @@ public class ProfileController {
 	public List<Profile> display() {
 		logger.info("display profile.");
 		logger.trace(" Inside profile display() function");
-		logger.error("Error happened at profile display()");
 		return service.findAll();
 		//return "display";
 	}
-	
+	 
 
 	@PostMapping(path = "/create")
 	@ApiOperation(value = "addProfile", nickname = "addProfile")
@@ -53,7 +52,6 @@ public class ProfileController {
 	public Profile createProfile(@RequestBody Profile user) {
 		logger.info("Adding Profile.");
 		logger.trace(" Inside createProfile() function");
-		logger.error("Error happened at createProfile()");
 		return service.createProfile(user);
 		
 	}
@@ -65,7 +63,6 @@ public class ProfileController {
 	public Profile updateProfile(@RequestBody Profile updateUser) {
 		logger.info("updating Profile.");
 		logger.trace(" Inside updateProfile() function");
-		logger.error("Error happened at updateProfile()");
 		Profile user = service.updateProfile(updateUser);		
 		if(user == null) {
 			return null;
